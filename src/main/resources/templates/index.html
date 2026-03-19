@@ -1,0 +1,15 @@
+<h2>Employees List</h2>
+<a href="/showAddForm">Add Employee</a>
+<table border="1">
+<tr><th>ID</th><th>First</th><th>Last</th><th>Email</th><th>Actions</th></tr>
+<tr th:each="e : ${employeeList}">
+<td th:text="${e.id}"></td>
+<td th:text="${e.firstName}"></td>
+<td th:text="${e.lastName}"></td>
+<td th:text="${e.email}"></td>
+<td>
+<a th:href="@{/showUpdateForm/{id}(id=${e.id})}">Update</a>
+<a th:href="@{/deleteEmployee/{id}(id=${e.id})}">Delete</a>
+</td>
+</tr>
+</table>

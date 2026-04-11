@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${product.id == null ? 'Add Product' : 'Edit Product'}">Product Form</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<div class="page-wrapper">
+    <div class="container">
+
+        <section class="hero-card" style="margin-bottom: 24px;">
+            <div class="hero-text">
+                <p class="mini-title">PRODUCT FORM</p>
+                <h1 th:text="${product.id == null ? 'Add New Product' : 'Edit Product'}">Add New Product</h1>
+                <p class="hero-subtext">
+                    Fill in the details below to save product information in the inventory system.
+                </p>
+            </div>
+        </section>
+
+        <section class="table-card" style="max-width: 850px; margin: 0 auto;">
+            <form th:action="@{/products/save}" th:object="${product}" method="post" class="product-form">
+                <input type="hidden" th:field="*{id}">
+
+                <div class="form-group">
+                    <label>Product Name</label>
+                    <input type="text" th:field="*{name}" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea th:field="*{description}" rows="4" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Price</label>
+                    <input type="number" th:field="*{price}" step="0.01" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Stock</label>
+                    <input type="number" th:field="*{stock}" min="0" required>
+                </div>
+
+                <div class="form-buttons">
+                    <button type="submit" class="small-btn update-btn">Save Product</button>
+                    <a th:href="@{/products}" class="small-btn edit-btn">Back to Dashboard</a>
+                </div>
+            </form>
+        </section>
+
+    </div>
+</div>
+
+</body>
+</html>
